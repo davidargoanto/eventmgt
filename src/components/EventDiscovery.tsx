@@ -19,6 +19,7 @@ export default function EventDiscovery() {
     return (
         <> 
         < Box m = {2} > 
+        <Heading m={10}> For You </Heading>
         <Grid templateColumns='repeat(4, 1fr)' gap={6}>
             {/* event list 1 */}
             <Card maxW='sm'>

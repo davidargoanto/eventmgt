@@ -1,7 +1,8 @@
 import {
     Stack,
     Input,
-    Box
+    Box,
+    Divider
 }
 from "@chakra-ui/react"
 import Logo from "./Logo"
@@ -15,7 +16,7 @@ export default function Navbar() {
                 align='stretch'
                 m={2}
                 spacing={8}
-                justify={["center", "space-between"]}
+                justify={["center", "space-between", "flex-end", "end"]}
                 direction={["column", "row", "row", "row"]}
                 pt={[4, 4, 0, 0]}>
                 <Logo></Logo>
@@ -24,6 +25,7 @@ export default function Navbar() {
                     
                 
                 <Menu></Menu>
+                <Divider></Divider>
             </Stack>
             </Box>
         
