@@ -15,15 +15,11 @@ import {
  import { IoAnalyticsSharp, IoLogoBitcoin, IoSearchSharp } from 'react-icons/io5'
 import { ReactElement } from 'react'
 
-interface FeatureProps {
-    text: string
-    iconBg: string
-    icon?: ReactElement
-  }
+
 
   
     
-  const Feature = ({ text, icon, iconBg }: FeatureProps) => {
+  const Feature = ({ text, icon, iconBg }) => {
     return (
       <Stack direction={'row'} align={'center'}>
         <Flex w={8} h={8} align={'center'} justify={'center'} rounded={'full'} bg={iconBg}>
