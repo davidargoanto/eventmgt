@@ -39,7 +39,7 @@ export default function Page() {
             return(
                 <div>
                 
-               <Link href='./eventlist/'>
+               <Link href={`/eventlist/${eventlist.id}`}>
                 <EventDiscovery
                     title={eventlist.title}
                     body={eventlist.body}

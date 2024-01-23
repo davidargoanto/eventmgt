@@ -9,7 +9,7 @@ const {id} = params
             "Content-Type": "application/json"
         },
     });
-    const eventlist = await res.json();
+    const eventlistdetail = await res.json();
 
-    return Response.json({eventlist});
+    return Response.json({eventlistdetail});
 }

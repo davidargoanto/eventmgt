@@ -42,19 +42,4 @@ export async function login(req) {
     return data.json();
   }
 
-  export async function productUser() {
-    const token = await localStorage.getItem("token");
   
-    console.log("token => ", token);
-  
-    const res = await axios.get(
-      process.env.NEXT_PUBLIC_API_URL + "/api/product/product-user",
-      {
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      }
-    );
-    console.log (res)
-    return res
-  }
