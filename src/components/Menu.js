@@ -12,8 +12,8 @@ export default function Menu() {
             justify={["center", "space-between", "flex-end", "flex-end"]}
             direction={["column", "row", "row", "row"]}
             pt={[4, 4, 0, 0]}>
-            <Button size='md' as={NextLink} href='./../find_event' >Find Event </Button>
-            <Button as={NextLink} href='./../create_event'>Create Event</Button>
+            <Button size='md' as={NextLink} href='./../eventlist' >Find Event </Button>
+            <Button as={NextLink} href='./../createevent'>Create Event</Button>
             <Button>Help Center</Button>
             <Button as={NextLink} href='./../login'>Login</Button>
             <Button as={NextLink} href='./../signup'>Sign up</Button>

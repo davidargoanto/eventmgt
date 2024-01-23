@@ -22,6 +22,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/Providers.js", "src/app/layout.js", "src/app/signup/page.js", "src/app/login/page.js", "src/app/find_event/page.js", "src/app/create_event/page.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/app/Providers.js", "src/app/layout.js", "src/app/signup/page.js", "src/app/login/page.js", "src/app/utils/page.js", "src/app/create_event/page.js", "src/components/Navbar2.js", "src/components/Navbar.js", "src/components/Menu.js", "src/components/Logo.js", "src/components/HomeBanner.js", "src/components/Hero.js", "src/components/EventDiscovery.js", "src/components/CityCategory.js", "src/components/Category.js", "src/app/page.js"],
   "exclude": ["node_modules"]
 }
