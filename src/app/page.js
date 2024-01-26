@@ -10,38 +10,45 @@ import {useQuery, useIsFetching} from "@tanstack/react-query"
 
 
 export default function Home() {
-    const myData =[]
+    const myData = [];
     const {
-        data =myData,
-        isError,
-        isSuccess,
-        isLoading
+      data = myData,
+      isError,
+      isSuccess,
+      isLoading,
     } = useQuery({
-        queryKey : ["posts"],
-        queryFn : productUser()
-    })
-    
-    if (isLoading) {
-        console.log(data)
-        return <h3> Loading ... </h3>;
-    }
+      queryKey: ["data"],
+      queryFn: productUser,
+    });
 
-    if (isError) {
-        console.log(data)
-        return (
-            
-        <h3>Error ... {data}</h3>);
-        
+    if (isLoading) {
+
+        return <h3> Loading ... </h3>;
     }
     if (isSuccess) {
         console.log(JSON.stringify(data))
+        return (
+            <ChakraProvider>
+                <div>   
+                    <Hero></Hero>
+                </div>
+            </ChakraProvider>
+        )
     }
-
-    return (
+    if (isError) {
+        console.log(data)
+        return (
         <ChakraProvider>
             <div>   
+            <h3>Error ... {data}</h3>
                 <Hero></Hero>
             </div>
         </ChakraProvider>
-    )
+            
+);
+        
+    }
+
+
+
 }

@@ -30,7 +30,7 @@ export async function login(req) {
   }
   
   export async function register({ name, email, password }) {
-    const data = await fetch("http://localhost:5670/api/auth/register", {
+    const data = await fetch( process.env.NEXT_PUBLIC_API_URL +"/api/auth/register", {
       method: "POST",
   
       body: JSON.stringify({
@@ -42,4 +42,29 @@ export async function login(req) {
     return data.json();
   }
 
+  export async function productUser() {
+    const token = await localStorage.getItem("token");
   
+    console.log("token => ", token);
+  
+    const data = await fetch(
+      process.env.NEXT_PUBLIC_API_URL + "/api/product/product-secret",
+      {
+        method : "GET",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      }
+    );
+    if (data.ok=== true){
+      console.log("hi")
+      const res =  await data.json()
+      return res
+    }else {
+      const res =  await data.json()
+      console.log (res)
+      alert(JSON.stringify(res.error))
+      throw new Error("Network response was not OK");
+
+    };
+  }
