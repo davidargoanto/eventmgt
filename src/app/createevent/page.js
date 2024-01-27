@@ -21,18 +21,21 @@ import {
     DatePicker
 } from '@chakra-ui/react'
 import {createevent} from './../../../api/event'
-import {useState} from 'react';
-import {useMutation} from '@tanstack/react-query';
+import { useState } from 'react';
+import { useMutation } from '@tanstack/react-query';
+
+
+
 
 export default function page() {
-
+     
     const [title, setTitle] = useState("");
     const [description, setDesc] = useState("")
     const [location, setLoc] = useState("")
     const [datetime, setDate] = useState("")
-    const [availableseats, setAvailableseats] = useState(200)
-    const [price, setPrice] = useState(100)
-    const [userID, setUserID] = useState(1)
+    const [availableseats, setAvailableseats] = useState()
+    const [price, setPrice] = useState()
+    const [userID, setUserID ] = useState(1)
 
     const createMutation = useMutation({
         mutationFn: async (data) => {
@@ -42,8 +45,8 @@ export default function page() {
 
         },
         onSuccess: (data, variables, context) => {
-            console.log(data)
-            router.push("/");
+          console.log(data)
+          router.push("/");
         },
         onError: (err, variables, context) => {
 
@@ -63,6 +66,7 @@ export default function page() {
             userID: userID
 
         });
+        alert("ok")
     };
 
     return (
@@ -105,19 +109,27 @@ export default function page() {
                         <FormHelperText>Insert yout event location here</FormHelperText>
                     </FormControl>
 
-                    <FormControl isRequired="isRequired">
-                        <FormLabel>Capacity</FormLabel>
-                        <Input onChange={(e) => setAvailableseats(parseInt(e.target.value))}></Input>
-                    </FormControl>
+            <FormControl isRequired="isRequired">
+                <FormLabel>Capacity</FormLabel>
+                <Input 
+                onChange={(e)=> (setAvailableseats(parseInt(e.target.value)))}
+                >
+                    
+                </Input>
+            </FormControl>
 
                     <FormControl isRequired="isRequired">
                         <FormLabel>Price</FormLabel>
 
-                        <Input onChange={(e) => setPrice(parseInt(e.target.value))}></Input>
-                        <FormHelperText>IDR</FormHelperText>
-                    </FormControl>
+                <Input
+                onChange={(e)=> (setPrice(parseInt(e.target.value)))}
+                >
+                    
+                </Input>
+                <FormHelperText>IDR</FormHelperText>
+            </FormControl>
 
-                    <Button onClick={() => create()&show_alert("ok")}>Submit</Button>
+                    <Button onClick={() => create()}>Submit</Button>
                 </Stack>
             </Box>
         </div>

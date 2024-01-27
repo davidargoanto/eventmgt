@@ -3,97 +3,131 @@
 import {
   Flex,
   Box,
+  Card,
+  CardHeader,
+  CardBody,
   FormControl,
   FormLabel,
   Input,
-  InputGroup,
-  HStack,
-  InputRightElement,
+  Checkbox,
   Stack,
   Button,
   Heading,
   Text,
   useColorModeValue,
-  Link,
+  FormHelperText
 } from '@chakra-ui/react'
-import { useState } from 'react'
-import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons'
 
-export default function SignupCard() {
-  const [showPassword, setShowPassword] = useState(false)
+import { register} from "../../../api/auth"
+
+import { useState } from 'react'
+import {useMutation} from "@tanstack/react-query"
+import { useRouter } from 'next/navigation'
+
+
+export default function Signingup() {
+  const [emails, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [role, setRole] = useState("");
+  const [referralC, setRef] = useState("");
+  const [passwords, setPassword] = useState("");
+  const router = useRouter();
+
+  const regMutation = useMutation({
+    mutationFn: async (data) => {
+      console.log(data)
+      const res =  await register(data)
+      return res
+
+    },
+    onSuccess: (data, variables, context) => {
+      console.log(data);
+      router.push("/login");
+    },
+    onError:(err, variables, context) => {
+      
+      console.log(JSON.stringify(err));
+
+    },
+  });
+
+  const handleRegSubmit = (e) => {
+    regMutation.mutate({
+      name : name,
+      email: emails,
+      password: passwords,
+      referralC : referralC,
+      role : role
+
+    });
+  };
 
   return (
-    <Flex
-      minH={'100vh'}
-      align={'center'}
-      justify={'center'}
-      bg={useColorModeValue('gray.50', 'gray.800')}>
-      <Stack spacing={8} mx={'auto'} maxW={'lg'} py={12} px={6}>
-        <Stack align={'center'}>
-          <Heading fontSize={'4xl'} textAlign={'center'}>
-            Sign up
-          </Heading>
-          <Text fontSize={'lg'} color={'gray.600'}>
-            to enjoy all of our cool features ✌️
-          </Text>
-        </Stack>
-        <Box
-          rounded={'lg'}
-          bg={useColorModeValue('white', 'gray.700')}
-          boxShadow={'lg'}
-          p={8}>
-          <Stack spacing={4}>
-            <HStack>
-              <Box>
-                <FormControl id="firstName" isRequired>
-                  <FormLabel>First Name</FormLabel>
-                  <Input type="text" />
-                </FormControl>
-              </Box>
-              <Box>
-                <FormControl id="lastName">
-                  <FormLabel>Last Name</FormLabel>
-                  <Input type="text" />
-                </FormControl>
-              </Box>
-            </HStack>
-            <FormControl id="email" isRequired>
-              <FormLabel>Email address</FormLabel>
-              <Input type="email" />
-            </FormControl>
-            <FormControl id="password" isRequired>
-              <FormLabel>Password</FormLabel>
-              <InputGroup>
-                <Input type={showPassword ? 'text' : 'password'} />
-                <InputRightElement h={'full'}>
-                  <Button
-                    variant={'ghost'}
-                    onClick={() => setShowPassword((showPassword) => !showPassword)}>
-                    {showPassword ? <ViewIcon /> : <ViewOffIcon />}
-                  </Button>
-                </InputRightElement>
-              </InputGroup>
-            </FormControl>
-            <Stack spacing={10} pt={2}>
-              <Button
-                loadingText="Submitting"
-                size="lg"
-                bg={'blue.400'}
-                color={'white'}
-                _hover={{
-                  bg: 'blue.500',
-                }}>
-                Sign up
-              </Button>
-            </Stack>
-            <Stack pt={6}>
-              <Text align={'center'}>
-                Already a user? <Link href='./login' color={'blue.400'}>Login</Link>
-              </Text>
-            </Stack>
-          </Stack>
-        </Box>
-      </Stack>
-    </Flex>
-  )
+    <div className="flex justify-center items-center">
+      <Card w={"40%"} className="max-w-1/2">
+        <CardHeader className="">
+          <h3 className="text-2xl">Login</h3>
+        </CardHeader>
+        <hr></hr>
+        <CardBody>
+        <FormControl className="mb-5">
+            <FormLabel> Name </FormLabel>
+            <Input
+              type="name"
+              name="name"
+              onChange={(e) => setName(e.target.value)}
+            />
+            <FormHelperText>{name}</FormHelperText>
+          </FormControl>
+          <FormControl className="mb-5">
+            <FormLabel> Email </FormLabel>
+            <Input
+              type="email"
+              name="email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <FormHelperText>{emails}</FormHelperText>
+          </FormControl>
+          <FormControl className="mb-5">
+            <FormLabel>Passwords</FormLabel>
+            <Input
+              type="password"
+              name="password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <FormHelperText></FormHelperText>
+          </FormControl>
+          <FormControl className="mb-5">
+            <FormLabel> Referral Code </FormLabel>
+            <Input
+              type="referralC"
+              name="referralC"
+              onChange={(e) => setRef(e.target.value)}
+            />
+            <FormHelperText>{referralC}</FormHelperText>
+          </FormControl>
+          <FormControl className="mb-5">
+            <FormLabel> Role</FormLabel>
+            <Input
+              type="referralC"
+              name="referralC"
+              onChange={(e) => setRole(e.target.value)}
+            />
+            <FormHelperText>{"Please Type in user for user privilage or admin for event organizer"}</FormHelperText>
+          </FormControl>
+          <FormControl className="text-center">
+            <Button
+              type="button"
+              colorScheme="blue"
+              className="w-full"
+              onClick={() => handleRegSubmit()}
+            >
+              {" "}
+              Sign up{" "}
+            </Button>
+          </FormControl>
+        </CardBody>
+      </Card>
+    </div>
+  );
 }

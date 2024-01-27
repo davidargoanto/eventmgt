@@ -18,11 +18,13 @@ import {
   FormHelperText
 } from '@chakra-ui/react'
 
-import {loginAxios, login} from "../../../api/auth"
+import { login} from "../../../api/auth"
 
 import { useState } from 'react'
 import {useMutation} from "@tanstack/react-query"
 import { useRouter } from 'next/navigation'
+
+
 
 
 export default function Loggingin() {
@@ -39,7 +41,7 @@ export default function Loggingin() {
     },
     onSuccess: (data, variables, context) => {
       console.log(data)
-      router.push("/");
+      router.push("/profile");
     },
     onError:(err, variables, context) => {
       

@@ -18,8 +18,8 @@ import {
 } from "@chakra-ui/react"
 import { BsBodyText } from "react-icons/bs"
 
-export default function EventDiscovery(props) {
-    const {title, body, id} = props
+export default function EventDiscovery(params) {
+    const {title, body, id} = params
     return (
         <>  
             <Card maxW='sm' >

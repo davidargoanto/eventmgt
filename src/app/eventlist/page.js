@@ -1,59 +1,91 @@
 'use client'
 
 import Link from "next/link";
-import { CardBody, Heading } from "@chakra-ui/react";
 import useSWR from "swr";
 import EventDiscovery from './../../components/EventDiscovery'
-import { Box,Grid } from "@chakra-ui/react";
+import {     Card,
+  CardHeader,
+  CardBody,
+  CardFooter,
+  Image,
+  Stack,
+  Heading,
+  Text,
+  Divider,
+  Button,
+  ButtonGroup, } from "@chakra-ui/react";
 import  {useState } from "react";
+import {getdata} from "../../../api/eventlist" 
+import {useQuery, useIsFetching} from "@tanstack/react-query"
 
-export default function Page() {
-    const [cnt, setCnt] = useState(1)
- 
-  const pages = []
-  for (let i = 0; i < cnt; i++) {
-    pages.push(<Page index={i} key={i} />)
-  }
-  const fetcher = (...args) => fetch(...args).then((res) => res.json());
-  const { data, error, isLoading } = useSWR(
-    "http://localhost:3000/api/eventlist",
-    //`https://cdn.contentful.com/spaces/${process.env.CONTENTFUL_SPACE_ID}/environments/master/entries?access_token=${process.env.CONTENTFUL_ACCESS_TOKEN}&content_type=post`,
-    fetcher
-  );
+export default function eventlist(){
+const myData = [] 
+const {
+  data = myData,
+  isError,
+  isSuccess,
+  isLoading,
+} = useQuery({
+  queryKey: ["data"],
+  queryFn: getdata,
+});
+if (isLoading) {
 
-  if (error) {
-    return <div> Failed to Load</div>;
-  }
-
-  if (isLoading) {
-    return <div> Loading from SWR ... </div>;
-  }
-  
+  return <h3> Loading ... </h3>;
+}
+if (isSuccess) {
+  console.log(JSON.stringify(data))
   return (
-    <div>
-        <Heading m={10}> Event For You </Heading>
-        < Box m = {2} > 
-        
-        <Grid templateColumns='repeat(4, 1fr)' gap={6}>
-        {data?.eventlist?.map((eventlist, index) => {
-            return(
-                <div>
-                
-               <Link href={`/eventlist/${eventlist.id}`}>
-                <EventDiscovery
-                    title={eventlist.title}
-                    body={eventlist.body}
-                    id={eventlist.id}
+   <>
+    {data.data.map(item =>{
+          
+          return(
+            <Card maxW='sm' >
+                <CardBody >
+                    <Image
+                        src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80'
+                        alt='Green double couch with wooden legs'
+                        borderRadius='lg'/>
+                    <Stack mt='6' spacing='3'>
+                        <Heading m={1} size='md'>{item.title}</Heading>
+                        <Text>
+                           {item.description}
+                        </Text>
+                        <Text color='blue.600' fontSize='2xl'>
+                           Price: {item.id}
+                        </Text>
+                    </Stack>
+                </CardBody>
+                <Divider/>
+                <CardFooter>
                     
-                ></EventDiscovery>
-                </Link>
-                </div>
-            );
+                    <ButtonGroup spacing='2'>
+                        
+                        <Button variant='solid' colorScheme='blue'>
+                            Check Event
+                        </Button>
+                    </ButtonGroup>
+                    
+                </CardFooter>
+            </Card>
+          )
+          
+          
         })}
+   
+   </>
+
+  )
+}
+  if (isError) {
+    console.log(data)
+    return (
+      <Center w= "100vw">
+        Please Log in with a valid account
+      </Center>
         
-        </Grid>
-        </Box>
-        <button onClick={() => setCnt(cnt + 1)}>Load More</button>
-   </div>
-  );
-    }
+    );
+    
+}
+
+}
