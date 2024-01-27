@@ -23,19 +23,25 @@ import {
 import {createevent} from './../../../api/event'
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation'
 
 
 
 
 export default function page() {
-     
+    const router = useRouter();
+    let userid = 99999
+    if (typeof window !== 'undefined') {
+        // Perform localStorage action
+        userid = sessionStorage.getItem("userID")
+    }
     const [title, setTitle] = useState("");
     const [description, setDesc] = useState("")
     const [location, setLoc] =  useState("")
     const [datetime, setDate] = useState("")
-    const [availableseats, setAvailableseats] = useState("")
-    const [price, setPrice] = useState("")
-    const [userID, setUserID ] = useState(1)
+    const [availableseats, setAvailableseats] = useState()
+    const [price, setPrice] = useState()
+    const [userID, setUserID ] = useState(parseInt(userid))
 
     const createMutation = useMutation({
         mutationFn: async (data) => {
@@ -45,8 +51,9 @@ export default function page() {
     
         },
         onSuccess: (data, variables, context) => {
+        router.push("/");
           console.log(data)
-          router.push("/");
+
         },
         onError:(err, variables, context) => {
           
@@ -112,7 +119,7 @@ export default function page() {
             <FormControl isRequired="isRequired">
                 <FormLabel>Capacity</FormLabel>
                 <Input 
-                onChange={(e)=> setAvailableseats(e.target.value)}
+                onChange={(e)=> setAvailableseats(parseInt(e.target.value))}
                 >
                     
                 </Input>
@@ -122,7 +129,7 @@ export default function page() {
                 <FormLabel>Price</FormLabel>
 
                 <Input
-                onChange={(e)=> setPrice(e.target.value)}
+                onChange={(e)=> setPrice(parseInt(e.target.value))}
                 >
                     
                 </Input>

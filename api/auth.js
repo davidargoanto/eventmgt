@@ -18,6 +18,7 @@ export async function login(req) {
       const res =  await data.json()
       console.log (res)
       localStorage.setItem("token", res.token);
+      sessionStorage.setItem("userID", res.data.id)
       return res
     }else {
       const res =  await data.json()
@@ -47,8 +48,6 @@ export async function login(req) {
     if (data.ok=== true){
       console.log("hi")
       const res =  await data.json()
-      console.log (res)
-      localStorage.setItem("token", res.token);
       return res
     }else {
       const res =  await data.json()
@@ -80,7 +79,6 @@ export async function login(req) {
     }else {
       const res =  await data.json()
       console.log (res)
-      alert(JSON.stringify(res.error))
       throw new Error("Network response was not OK");
 
     };

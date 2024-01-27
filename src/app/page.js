@@ -10,6 +10,10 @@ import {useQuery, useIsFetching} from "@tanstack/react-query"
 
 
 export default function Home() {
+    if (typeof window !== 'undefined') {
+        // Perform localStorage action
+        sessionStorage.setItem("userID", 0)
+      }
     const myData = [];
     const {
       data = myData,

@@ -1,9 +1,12 @@
 export async function createevent(req) {
+    const token = await localStorage.getItem("token");
     console.log(req)
+
     const data = await fetch("http://localhost:5670/api/event/create", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
       },
       body: JSON.stringify({
         title : req.title,
@@ -21,13 +24,10 @@ export async function createevent(req) {
       console.log("hi")
       const res =  await data.json()
       console.log (res)
-      localStorage.setItem("token", res.token);
       return res
     }else {
-      const res =  await data.json()
-      console.log (res)
       alert(JSON.stringify(res.error))
-      throw new Error("Network response was not OK");
+
 
     };
 

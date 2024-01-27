@@ -123,7 +123,7 @@ export default function Signingup() {
               onClick={() => handleRegSubmit()}
             >
               {" "}
-              Login{" "}
+              Sign up{" "}
             </Button>
           </FormControl>
         </CardBody>
