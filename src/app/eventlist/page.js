@@ -19,6 +19,11 @@ import {getdata} from "../../../api/eventlist"
 import {useQuery, useIsFetching} from "@tanstack/react-query"
 
 export default function eventlist(){
+  const handleclick =(id)=>{
+    sessionStorage.setItem("eventid", id)
+    console.log(id)
+    
+  }
 const myData = [] 
 const {
   data = myData,
@@ -61,8 +66,8 @@ if (isSuccess) {
                     
                     <ButtonGroup spacing='2'>
                         
-                        <Button variant='solid' colorScheme='blue'>
-                            Check Event
+                        <Button variant='solid' colorScheme='blue'  onClick={()=>{handleclick(item.id)}}>
+                          <a href="http://localhost:3000/eventdetail">Check Event</a>
                         </Button>
                     </ButtonGroup>
                     
