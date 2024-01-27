@@ -1,3 +1,5 @@
+
+
 export async function getdata(){
     const userid = parseInt(sessionStorage.getItem("userID"))
     console.log(userid)
@@ -25,8 +27,8 @@ export async function getdata(){
       };
 }
 
-export async function getctr(id){
-
+export async function getctr(){
+    const id = parseInt(sessionStorage.getItem("eventid"))
     const data = await fetch ("http://localhost:5670/api/ctr/month", {
         method: "POST",
         headers: {

@@ -22,11 +22,18 @@ import {
   } from '@chakra-ui/react'
   import Link from "next/link";
   import {getdata} from "../../../api/profile"
-  import { useRouter } from 'next/router';
   import {useQuery, useIsFetching} from "@tanstack/react-query"
-  export default function profile (){
 
+  export default function profile (){
     const myData = {} 
+
+
+    const handleclick =(id)=>{
+      sessionStorage.setItem("eventid", id)
+      console.log(id)
+      
+    }
+
     const {
       data = myData,
       isError,
@@ -79,14 +86,7 @@ import {
                 {item.description}
                 <br/>
                 <Box color={"blue"} >
-                <Button
-                type="button"
-                colorScheme="blue"
-                className="w-full"
-                >
-                {" "}
-                 See more details{" "}
-                </Button>
+                  <a href='http://localhost:3000/ctr' onClick={()=>{handleclick(item.id)}}>See more Details</a>
                 </Box>
               </Box>)
               
