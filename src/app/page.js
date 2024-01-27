@@ -5,7 +5,7 @@ import Hero from '@/components/Hero'
 import Logo from '@/components/Logo'
 import Menu from '@/components/Menu'
 
-import { productUser } from '../../api/auth'
+import { productUser} from '../../api/auth'
 import {useQuery, useIsFetching} from "@tanstack/react-query"
 
 
@@ -18,7 +18,7 @@ export default function Home() {
         isLoading
     } = useQuery({
         queryKey : ["posts"],
-        queryFn : productUser()
+        // queryFn : productUser()
     })
     
     if (isLoading) {
