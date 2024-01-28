@@ -109,6 +109,35 @@ import {
               
             })}
         </Box>
+        <Box w ={"100%"}marginTop={"1vw"}>
+
+        <Heading size='2xl' marginBottom={"5vw"}>My Purchase History</Heading>
+        {data.profile.transaction.map(item =>{
+              
+              return(
+              <Box w ={"80%"} margin={"2vw"} fontSize={"2vw"} rounded={"15px"} border='1px' borderColor='black'>
+                <Flex>
+                <Box w= "50%">Events Name :{item.eventtitle}</Box>
+                <Box w= "50%">{item.datetime}</Box>
+                </Flex>
+                <hr/>
+                <Flex>
+                <Box w= "33%">Price :{item.total}</Box>
+                <Box w= "33%">Discount :{item.disc}</Box>
+                <Box w= "33%">Amount :{item.amount}</Box>
+                </Flex>
+                <Flex>
+                <Box w= "50%">Payed :{item.money}</Box>
+                <Box w= "50%">Points used :{item.points}</Box>
+                </Flex>
+
+
+
+              </Box>)
+              
+            })}
+        </Box>
+
 
         </Box>
 
