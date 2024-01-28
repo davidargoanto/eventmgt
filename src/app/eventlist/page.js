@@ -5,6 +5,7 @@ import useSWR from "swr";
 import EventDiscovery from './../../components/EventDiscovery'
 import {     Card,
   CardHeader,
+  Center,
   CardBody,
   CardFooter,
   Image,
