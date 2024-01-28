@@ -23,7 +23,7 @@ import {
 import {createevent} from './../../../api/event'
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
-
+import { useRouter } from 'next/navigation'
 
 
 
@@ -36,6 +36,7 @@ export default function page() {
     const [availableseats, setAvailableseats] = useState()
     const [price, setPrice] = useState()
     const [userID, setUserID ] = useState(1)
+    const router = useRouter();
 
     const createMutation = useMutation({
         mutationFn: async (data) => {
@@ -45,10 +46,12 @@ export default function page() {
 
         },
         onSuccess: (data, variables, context) => {
+            router.push("/");
           console.log(data)
-          router.push("/");
+          
         },
         onError: (err, variables, context) => {
+            console.log(data)
 
             console.log(JSON.stringify(err));
 
@@ -66,7 +69,7 @@ export default function page() {
             userID: userID
 
         });
-        alert("ok")
+        
     };
 
     return (

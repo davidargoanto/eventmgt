@@ -26,7 +26,7 @@ export async function createevent(req) {
       console.log (res)
       return res
     }else {
-      alert(JSON.stringify(res.error))
+      console.log ("why")
 
 
     };
