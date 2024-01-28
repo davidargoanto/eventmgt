@@ -66,7 +66,7 @@ export default function Signingup() {
     <div className="flex justify-center items-center">
       <Card w={"40%"} className="max-w-1/2">
         <CardHeader className="">
-          <h3 className="text-2xl">Login</h3>
+          <h3 className="text-2xl">Register</h3>
         </CardHeader>
         <hr></hr>
         <CardBody>
