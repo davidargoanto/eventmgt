@@ -1,9 +1,7 @@
 export async function getdataone() {
-    const id = parseInt(sessionStorage.getItem("eventid"))
+    const id = parseInt(sessionStorage.getItem("oneid"))
     console.log(id)
-    const data = await fetch(
-
-        "http://localhost:5670/api/event/getone",
+    const data = await fetch("http://localhost:5670/api/event/getone",
         {
             method: "POST",
             headers:{

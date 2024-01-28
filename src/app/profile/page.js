@@ -49,6 +49,21 @@ import {
     }
     if (isSuccess) {
       console.log(JSON.stringify(data))
+      const Disc = ()=>{
+        if (data.profile.discount !== 0){
+          return(
+            <Center bg={"lightblue"} color={"white"}>
+              Registration Promo discount {data.profile.discount}
+              <br/>
+              until{data.profile.discexp} 
+              <br/>
+              Use code REG10 during transaction 
+            </Center>
+          )
+        }
+
+      }
+
       return (
         <Box w= "100vw"> 
 
@@ -67,7 +82,9 @@ import {
             <GridItem colSpan={1}>: {data.profile.pointsexp}</GridItem>        
           </Grid>
         </Center>
+
         <Box w ={"100%"}marginTop={"1vw"}>
+        <Disc></Disc>
         <Heading size='2xl' marginBottom={"5vw"}>Events that I Organized</Heading>
         {data.profile.eventcreate.map(item =>{
               

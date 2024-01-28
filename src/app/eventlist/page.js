@@ -20,11 +20,11 @@ import {useQuery, useIsFetching} from "@tanstack/react-query"
 
 export default function eventlist(){
   const handleclick =(id)=>{
-    sessionStorage.setItem("eventid", id)
+    sessionStorage.setItem("oneid", id)
     console.log(id)
     
   }
-const myData = [] 
+const myData = {}
 const {
   data = myData,
   isError,
@@ -63,13 +63,9 @@ if (isSuccess) {
                 </CardBody>
                 <Divider/>
                 <CardFooter>
-                    
-                    <ButtonGroup spacing='2'>
-                        
                         <Button variant='solid' colorScheme='blue'  onClick={()=>{handleclick(item.id)}}>
                           <a href="http://localhost:3000/eventdetail">Check Event</a>
                         </Button>
-                    </ButtonGroup>
                     
                 </CardFooter>
             </Card>
