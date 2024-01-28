@@ -7,7 +7,7 @@ export async function getdataone() {
             headers:{
                 "Content-Type": "application/json",
             },
-            body: JSON.stringfy({
+            body: JSON.stringify({
                 eventid:id
             })
            

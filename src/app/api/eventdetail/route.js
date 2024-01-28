@@ -1,15 +1,45 @@
-export const dynamic = 'force-dynamic' // defaults to auto
-export async function GET(request) {
+"use client"
+import {
+    Flex,
+    Box,
+    Card,
+    CardHeader,
+    CardBody,
+    FormControl,
+    FormLabel,
+    Input,
+    Checkbox,
+    Stack,
+    Button,
+    Heading,
+    Text,
+    useColorModeValue,
+    FormHelperText
+  } from '@chakra-ui/react'
+  import {useQuery, useIsFetching} from "@tanstack/react-query"
+  import { getctr } from '../../../api/event';
 
-    const {searchParams} = new URL(request.url);
-
-    const id = searchParams.get("id");
-    const res = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`, {
-        headers: {
-            "Content-Type": "application/json"
-        },
+  export default function stats (){
+    const myData =[]
+    const {
+      data = myData,
+      isError,
+      isSuccess,
+      isLoading,
+    } = useQuery({
+      queryKey: ["data"],
+      queryFn:getctr,
     });
-    const eventdetail = await res.json();
+    if (isLoading) {
 
-    return Response.json({eventdetail});
-}
+      return <h3> Loading ... </h3>;
+    }
+    if (isSuccess) {
+      console.log(data)
+    }
+    if (isError) {
+
+      return <h3> Data does not exist </h3>;
+    }
+
+  }

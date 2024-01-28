@@ -17,4 +17,6 @@ export async function getdata() {
         throw new Error("Network response was not OK");
 
     };
+
+    
   }

@@ -57,7 +57,7 @@ if (isSuccess) {
                            {item.description}
                         </Text>
                         <Text color='blue.600' fontSize='2xl'>
-                           Price: {item.id}
+                           Price: {item.price}
                         </Text>
                     </Stack>
                 </CardBody>
