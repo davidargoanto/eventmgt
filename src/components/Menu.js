@@ -14,7 +14,7 @@ export default function Menu() {
             pt={[4, 4, 0, 0]}>
             <Button size='md' as={NextLink} href='./../eventlist' >Find Event </Button>
             <Button as={NextLink} href='./../createevent'>Create Event</Button>
-            <Button as={NextLink} href='./../profile'>profile</Button>
+            <Button as={NextLink} href='./../profile'>Profile</Button>
             <Button as={NextLink} href='./../login'>Login</Button>
             <Button as={NextLink} href='./../signup'>Sign up</Button>
             

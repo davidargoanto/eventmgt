@@ -1,7 +1,8 @@
 import HomeBanner from "./HomeBanner"
 import EventDiscovery from "./EventDiscovery"
 import { Stack, HStack, VStack, Box, Divider } from "@chakra-ui/react"
-import Category from "./Category"
+import Footer from "./PageFooter"
+
 
 export default function Hero() {
     return (
@@ -10,9 +11,8 @@ export default function Hero() {
                 <Box>
                     <HomeBanner></HomeBanner>
                     <Divider marginLeft='-moz-initial'></Divider>
-                    <Category></Category>
-                    <Divider marginLeft='-moz-initial'></Divider>
-                    <EventDiscovery></EventDiscovery>
+                    <Footer></Footer>
+                    
                 </Box>
             </Stack>
         </div>
