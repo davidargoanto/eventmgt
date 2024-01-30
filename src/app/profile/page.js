@@ -6,7 +6,7 @@ import {
     Grid,
     GridItem,
     Box,
-    Card,
+    Button,
     CardHeader,
     CardBody,
     FormControl,
@@ -14,19 +14,21 @@ import {
     Input,
     Checkbox,
     Stack,
-    Button,
+    RadioGroup,
+    Radio,
     Heading,
     Text,
     useColorModeValue,
     FormHelperText
   } from '@chakra-ui/react'
   import Link from "next/link";
+  import React from 'react';
   import {getdata} from "../../../api/profile"
   import {useQuery, useIsFetching} from "@tanstack/react-query"
 
   export default function profile (){
     const myData = {} 
-
+    const [value, setValue] = React.useState('1')
 
     const handleclick =(id)=>{
       sessionStorage.setItem("eventid", id)
@@ -130,14 +132,31 @@ import {
                 <Box w= "50%">Payed :{item.money}</Box>
                 <Box w= "50%">Points used :{item.points}</Box>
                 </Flex>
+                <RadioGroup onChange={setValue} value={value}>
+                <Text>Rate our event </Text>
+      <Stack direction='row'>
+        
+        <Radio value='1'>1</Radio>
+        <Radio value='2'>2</Radio>
+        <Radio value='3'>3</Radio>
+        <Radio value='4'>4</Radio>
+        <Radio value='5'>5</Radio>
+      </Stack>
+      <FormControl margin={2}>
+        <FormLabel>Feedback</FormLabel>
+        <Input placeholder='Your feedback..'/>
+      </FormControl>
+      <Button>Submit</Button>
+    </RadioGroup>
+                <Flex>
 
-
+                </Flex>
 
               </Box>)
               
             })}
         </Box>
-
+        
 
         </Box>
 

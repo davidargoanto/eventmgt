@@ -9,7 +9,7 @@ export default function HomeBanner() {
                 <Image
                     
                     src='https://cdn.evbstatic.com/s3-build/fe/build/images/a975512af1947892ab2203b54ef5ca63-2_tablet_1067x470.webp'
-                    alt='Dan Abramov'/>
+                    alt='Banner'/>
             </Box>
         </Flex>
     )
